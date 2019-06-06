@@ -30,6 +30,8 @@ COPY gluster-fake-disk.service /etc/systemd/system/gluster-fake-disk.service
 COPY fake-disk.sh /usr/libexec/gluster/fake-disk.sh
 
 RUN dnf -y update && \
+    mkdir -p /var/log/core && \
+    mkdir -p /usr/libexec && \
     sed -i "s/LANG/\#LANG/g" /etc/locale.conf && \
     dnf -y install systemd-udev glusterfs-server dbus-python nfs-utils attr iputils iproute glusterfs-geo-replication openssh-server openssh-clients cronie tar rsync sos sudo xfsprogs && \
     dnf clean all && \
@@ -63,8 +65,7 @@ RUN dnf -y update && \
     systemctl enable gluster-fake-disk.service && \
     systemctl enable gluster-setup.service && \
     systemctl enable gluster-brickmultiplex.service && \
-    systemctl enable glusterd.service && \
-    mkdir -p /var/log/core;
+    systemctl enable glusterd.service ;
 
 EXPOSE 2222 111 245 443 24006 24007 2049 8080 6010 6011 6012 38465 38466 38468 38469 49152 49153 49154 49156 49157 49158 49159 49160 49161 49162
 
