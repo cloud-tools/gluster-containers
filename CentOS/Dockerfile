@@ -95,17 +95,17 @@ RUN true \
     && true
 
 VOLUME [ "/sys/fs/cgroup" ]
-ADD gluster-fake-disk.service /etc/systemd/system/gluster-fake-disk.service
-ADD fake-disk.sh /usr/libexec/gluster/fake-disk.sh
-ADD gluster-setup.service /etc/systemd/system/gluster-setup.service
-ADD gluster-setup.sh /usr/sbin/gluster-setup.sh
-ADD gluster-block-setup.service /etc/systemd/system/gluster-block-setup.service
-ADD gluster-block-setup.sh /usr/sbin/gluster-block-setup.sh
-ADD update-params.sh /usr/local/bin/update-params.sh
-ADD status-probe.sh /usr/local/bin/status-probe.sh
-ADD tcmu-runner-params /etc/sysconfig/tcmu-runner-params
-ADD gluster-check-diskspace.service  /etc/systemd/system/gluster-check-diskspace.service
-ADD check_diskspace.sh /usr/local/bin/check_diskspace.sh
+ADD CentOS/gluster-fake-disk.service /etc/systemd/system/gluster-fake-disk.service
+ADD CentOS/fake-disk.sh /usr/libexec/gluster/fake-disk.sh
+ADD CentOS/gluster-setup.service /etc/systemd/system/gluster-setup.service
+ADD CentOS/gluster-setup.sh /usr/sbin/gluster-setup.sh
+ADD CentOS/gluster-block-setup.service /etc/systemd/system/gluster-block-setup.service
+ADD CentOS/gluster-block-setup.sh /usr/sbin/gluster-block-setup.sh
+ADD CentOS/update-params.sh /usr/local/bin/update-params.sh
+ADD CentOS/status-probe.sh /usr/local/bin/status-probe.sh
+ADD CentOS/tcmu-runner-params /etc/sysconfig/tcmu-runner-params
+ADD CentOS/gluster-check-diskspace.service  /etc/systemd/system/gluster-check-diskspace.service
+ADD CentOS/check_diskspace.sh /usr/local/bin/check_diskspace.sh
 
 RUN chmod 644 /etc/systemd/system/gluster-setup.service && \
 chmod 644 /etc/systemd/system/gluster-check-diskspace.service && \
