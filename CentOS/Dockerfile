@@ -13,7 +13,7 @@ LABEL architecture="$ARCH" \
       description="Gluster Image is based on CentOS Image which is a scalable network filesystem. Using common off-the-shelf hardware, you can create large, distributed storage solutions for media streaming, data analysis, and other data- and bandwidth-intensive tasks." \
       io.openshift.tags="gluster,glusterfs,glusterfs-centos"
 
-RUN yum --setopt=tsflags=nodocs -y update && yum install -y centos-release-gluster && yum clean all && \
+RUN yum --setopt=tsflags=nodocs -y update && yum install -y centos-release-gluster6 && yum clean all && \
 (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == systemd-tmpfiles-setup.service ] || rm -f $i; done) && \
 rm -f /lib/systemd/system/multi-user.target.wants/* &&\
 rm -f /etc/systemd/system/*.wants/* &&\
@@ -95,17 +95,17 @@ RUN true \
     && true
 
 VOLUME [ "/sys/fs/cgroup" ]
-ADD CentOS/gluster-fake-disk.service /etc/systemd/system/gluster-fake-disk.service
-ADD CentOS/fake-disk.sh /usr/libexec/gluster/fake-disk.sh
-ADD CentOS/gluster-setup.service /etc/systemd/system/gluster-setup.service
-ADD CentOS/gluster-setup.sh /usr/sbin/gluster-setup.sh
-ADD CentOS/gluster-block-setup.service /etc/systemd/system/gluster-block-setup.service
-ADD CentOS/gluster-block-setup.sh /usr/sbin/gluster-block-setup.sh
-ADD CentOS/update-params.sh /usr/local/bin/update-params.sh
-ADD CentOS/status-probe.sh /usr/local/bin/status-probe.sh
-ADD CentOS/tcmu-runner-params /etc/sysconfig/tcmu-runner-params
-ADD CentOS/gluster-check-diskspace.service  /etc/systemd/system/gluster-check-diskspace.service
-ADD CentOS/check_diskspace.sh /usr/local/bin/check_diskspace.sh
+ADD gluster-fake-disk.service /etc/systemd/system/gluster-fake-disk.service
+ADD fake-disk.sh /usr/libexec/gluster/fake-disk.sh
+ADD gluster-setup.service /etc/systemd/system/gluster-setup.service
+ADD gluster-setup.sh /usr/sbin/gluster-setup.sh
+ADD gluster-block-setup.service /etc/systemd/system/gluster-block-setup.service
+ADD gluster-block-setup.sh /usr/sbin/gluster-block-setup.sh
+ADD update-params.sh /usr/local/bin/update-params.sh
+ADD status-probe.sh /usr/local/bin/status-probe.sh
+ADD tcmu-runner-params /etc/sysconfig/tcmu-runner-params
+ADD gluster-check-diskspace.service  /etc/systemd/system/gluster-check-diskspace.service
+ADD check_diskspace.sh /usr/local/bin/check_diskspace.sh
 
 RUN chmod 644 /etc/systemd/system/gluster-setup.service && \
 chmod 644 /etc/systemd/system/gluster-check-diskspace.service && \
