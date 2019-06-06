@@ -1,7 +1,5 @@
 FROM centos:7
 
-MAINTAINER Humble Chirammal hchiramm@redhat.com Saravanakumar Arumugam sarumuga@redhat.com
-
 ENV container docker
 
 ENV ARCH "x86_64"
@@ -49,7 +47,8 @@ mkdir -p /etc/glusterfs_bkp /var/lib/glusterd_bkp /var/log/glusterfs_bkp &&\
 cp -r /etc/glusterfs/* /etc/glusterfs_bkp &&\
 cp -r /var/lib/glusterd/* /var/lib/glusterd_bkp &&\
 cp -r /var/log/glusterfs/* /var/log/glusterfs_bkp && \
-mkdir -p /var/log/core;
+mkdir -p /var/log/core && \
+mkdir -p /usr/libexec;
 
 # downgrade lvm2 because of regression reported in https://bugzilla.redhat.com/1676612
 # once the bug is fixed, disable obtain_device_list_from_udev in lvm.conf
