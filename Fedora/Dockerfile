@@ -19,15 +19,15 @@ LABEL name="$REPO/$NAME" \
       io.k8s.description="GlusterFS is a distributed and scalable network filesystem. Using common, off-the-shelf hardware you can create large, distributed storage solutions for media streaming, data analysis, and other data- and bandwidth-intensive tasks." \
       io.openshift.tags="gluster,glusterfs,gluster-fedora" \
       com.redhat.component="$NAME" \
-      maintainer="Jose A. Rivera <jarrpa@redhat.com>, Humble Chirammal <hchiramm@redhat.com>"
+      maintainer=" cloud-tools "
 
 VOLUME [ "/sys/fs/cgroup/" ]
 
-ADD https://github.com/gluster/gluster-containers/blob/master/README.md /README.md
+ADD Fedora/README.md /README.md
 
-COPY gluster-setup.sh gluster-brickmultiplex.service gluster-brickmultiplex.sh gluster-setup.service /
-COPY gluster-fake-disk.service /etc/systemd/system/gluster-fake-disk.service
-COPY fake-disk.sh /usr/libexec/gluster/fake-disk.sh
+COPY Fedora/gluster-setup.sh gluster-brickmultiplex.service gluster-brickmultiplex.sh gluster-setup.service /
+COPY Fedora/gluster-fake-disk.service /etc/systemd/system/gluster-fake-disk.service
+COPY Fedora/fake-disk.sh /usr/libexec/gluster/fake-disk.sh
 
 RUN dnf -y update && \
     mkdir -p /var/log/core && \
