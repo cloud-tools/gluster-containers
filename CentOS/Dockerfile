@@ -38,7 +38,7 @@ yum --setopt=tsflags=nodocs -y install xfsprogs  && \
 yum --setopt=tsflags=nodocs -y install glusterfs-3.12.6  && \
 yum --setopt=tsflags=nodocs -y install glusterfs-server-3.12.6  && \
 yum --setopt=tsflags=nodocs -y install glusterfs-rdma-3.12.6  && \
-yum --setopt=tsflags=nodocs -y install gluster-block-3.12.6  && \
+yum --setopt=tsflags=nodocs -y install gluster-block && \
 yum --setopt=tsflags=nodocs -y install glusterfs-geo-replication-3.12.6 && yum clean all && \
 sed -i '/Defaults    requiretty/c\#Defaults    requiretty' /etc/sudoers && \
 sed -i '/Port 22/c\Port 2222' /etc/ssh/sshd_config && \
