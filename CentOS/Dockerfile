@@ -35,11 +35,11 @@ yum --setopt=tsflags=nodocs -y install tar  && \
 yum --setopt=tsflags=nodocs -y install cronie  && \
 yum --setopt=tsflags=nodocs -y install sudo  && \
 yum --setopt=tsflags=nodocs -y install xfsprogs  && \
-yum --setopt=tsflags=nodocs -y install glusterfs-3.12.6  && \
-yum --setopt=tsflags=nodocs -y install glusterfs-server-3.12.6  && \
-yum --setopt=tsflags=nodocs -y install glusterfs-rdma-3.12.6  && \
-yum --setopt=tsflags=nodocs -y install gluster-block && \
-yum --setopt=tsflags=nodocs -y install glusterfs-geo-replication-3.12.6 && yum clean all && \
+yum --setopt=tsflags=nodocs -y install glusterfs-3.12.15  && \
+yum --setopt=tsflags=nodocs -y install glusterfs-server-3.12.15  && \
+yum --setopt=tsflags=nodocs -y install glusterfs-rdma-3.12.15  && \
+yum --setopt=tsflags=nodocs -y install glusterfs-geo-replication-3.12.15 && \
+yum --setopt=tsflags=nodocs -y install gluster-block && yum clean all && \
 sed -i '/Defaults    requiretty/c\#Defaults    requiretty' /etc/sudoers && \
 sed -i '/Port 22/c\Port 2222' /etc/ssh/sshd_config && \
 sed -i 's/Requires\=rpcbind\.service//g' /usr/lib/systemd/system/glusterd.service && \
