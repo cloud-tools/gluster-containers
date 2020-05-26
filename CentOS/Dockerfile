@@ -95,7 +95,6 @@ ADD status-probe.sh /usr/local/bin/status-probe.sh
 ADD tcmu-runner-params /etc/sysconfig/tcmu-runner-params
 ADD gluster-check-diskspace.service  /etc/systemd/system/gluster-check-diskspace.service
 ADD check_diskspace.sh /usr/local/bin/check_diskspace.sh
-ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod 644 /etc/systemd/system/gluster-setup.service && \
 chmod 644 /etc/systemd/system/gluster-check-diskspace.service && \
@@ -106,7 +105,6 @@ chmod 500 /usr/sbin/gluster-block-setup.sh && \
 chmod +x /usr/local/bin/update-params.sh && \
 chmod +x /usr/local/bin/status-probe.sh && \
 chmod +x /usr/local/bin/check_diskspace.sh && \
-chmod +x /usr/local/bin/entrypoint.sh; \
 systemctl disable nfs-server.service && \
 systemctl mask getty.target && \
 systemctl enable gluster-fake-disk.service && \
