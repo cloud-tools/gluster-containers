@@ -35,11 +35,11 @@ yum --setopt=tsflags=nodocs -y install tar  && \
 yum --setopt=tsflags=nodocs -y install cronie  && \
 yum --setopt=tsflags=nodocs -y install sudo  && \
 yum --setopt=tsflags=nodocs -y install xfsprogs  && \
-yum --setopt=tsflags=nodocs -y install glusterfs-3.12.6  && \
-yum --setopt=tsflags=nodocs -y install glusterfs-server-3.12.6  && \
-yum --setopt=tsflags=nodocs -y install glusterfs-rdma-3.12.6  && \
+yum --setopt=tsflags=nodocs -y install glusterfs-3.12.14  && \
+yum --setopt=tsflags=nodocs -y install glusterfs-server-3.12.14  && \
+yum --setopt=tsflags=nodocs -y install glusterfs-rdma-3.12.14  && \
 yum --setopt=tsflags=nodocs -y install gluster-block && \
-yum --setopt=tsflags=nodocs -y install glusterfs-geo-replication-3.12.6 && yum clean all && \
+yum --setopt=tsflags=nodocs -y install glusterfs-geo-replication-3.12.14 && yum clean all && \
 sed -i '/Defaults    requiretty/c\#Defaults    requiretty' /etc/sudoers && \
 sed -i '/Port 22/c\Port 2222' /etc/ssh/sshd_config && \
 sed -i 's/Requires\=rpcbind\.service//g' /usr/lib/systemd/system/glusterd.service && \
@@ -108,6 +108,7 @@ ADD status-probe.sh /usr/local/bin/status-probe.sh
 ADD tcmu-runner-params /etc/sysconfig/tcmu-runner-params
 ADD gluster-check-diskspace.service  /etc/systemd/system/gluster-check-diskspace.service
 ADD check_diskspace.sh /usr/local/bin/check_diskspace.sh
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod 644 /etc/systemd/system/gluster-setup.service && \
 chmod 644 /etc/systemd/system/gluster-check-diskspace.service && \
@@ -118,6 +119,7 @@ chmod 500 /usr/sbin/gluster-block-setup.sh && \
 chmod +x /usr/local/bin/update-params.sh && \
 chmod +x /usr/local/bin/status-probe.sh && \
 chmod +x /usr/local/bin/check_diskspace.sh && \
+chmod +x /usr/local/bin/entrypoint.sh; \
 systemctl disable nfs-server.service && \
 systemctl mask getty.target && \
 systemctl enable gluster-fake-disk.service && \
@@ -130,4 +132,5 @@ systemctl enable gluster-check-diskspace.service
 EXPOSE 2222 111 245 443 24007 2049 8080 6010 6011 6012 38465 38466 38468 38469 49152 49153 49154 49156 49157 49158 49159 49160 49161 49162
 
 ENTRYPOINT ["/usr/local/bin/update-params.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/usr/sbin/init"]
